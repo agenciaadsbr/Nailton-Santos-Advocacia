@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Redirecionando para o WhatsApp...</title>
+<style>
+  :root{
+    --verde-950:#0C2119;
+    --pergaminho:#F4F1E8;
+    --latao:#B08D57;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--verde-950);
+    color:var(--pergaminho);
+    font-family:'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    text-align:center;
+    padding:24px;
+  }
+  .box{max-width:420px;}
+  .spinner{
+    width:44px; height:44px;
+    border-radius:50%;
+    border:3px solid rgba(244,241,232,0.25);
+    border-top-color:var(--latao);
+    margin:0 auto 26px;
+    animation:spin 0.9s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  h1{font-size:20px; font-weight:600; margin:0 0 10px;}
+  p{font-size:14.5px; color:rgba(244,241,232,0.72); margin:0 0 22px; line-height:1.6;}
+  a.manual{color:var(--latao); font-weight:600; text-decoration:none; border-bottom:1px solid var(--latao); padding-bottom:2px;}
+</style>
+</head>
+<body>
+  <div class="box">
+    <div class="spinner"></div>
+    <h1>Enviando seu caso para o WhatsApp</h1>
+    <p id="msg">Redirecionando em <span id="count">3</span>s. Se não abrir automaticamente, toque no link abaixo.</p>
+    <a class="manual" id="manualLink" href="#">Abrir WhatsApp agora</a>
+  </div>
+
+<script>
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var nome = params.get('nome') || '';
+  var whatsapp = params.get('whatsapp') || '';
+  var situacao = params.get('situacao') || 'Não especificada';
+  var tel = params.get('tel') || '5511900000000';
+
+  var texto = 'Olá, Dr. Nailton. Meu nome é ' + nome + '.\n' +
+              'WhatsApp para contato: ' + whatsapp + '\n' +
+              'Situação: ' + situacao + '\n' +
+              'Gostaria de uma análise inicial do meu caso.';
+
+  var waUrl = 'https://wa.me/' + tel + '?text=' + encodeURIComponent(texto);
+  document.getElementById('manualLink').href = waUrl;
+
+  var n = 3;
+  var countEl = document.getElementById('count');
+  var timer = setInterval(function(){
+    n -= 1;
+    if(n <= 0){
+      clearInterval(timer);
+      window.location.href = waUrl;
+    } else {
+      countEl.textContent = n;
+    }
+  }, 1000);
+})();
+</script>
+</body>
+</html>
