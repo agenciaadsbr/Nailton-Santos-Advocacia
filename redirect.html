@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16478765187"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-16478765187');
+</script>
+<!-- Event snippet for LEAD ADSBR conversion page -->
+<script>
+  gtag('event', 'conversion', {
+      'send_to': 'AW-16478765187/vDNuCNyY7PccEIOB2LE9',
+      'value': 1.0,
+      'currency': 'BRL'
+  });
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
@@ -50,15 +67,8 @@
 <script>
 (function(){
   var params = new URLSearchParams(window.location.search);
-  var nome = params.get('nome') || '';
-  var whatsapp = params.get('whatsapp') || '';
-  var situacao = params.get('situacao') || 'Não especificada';
-  var tel = params.get('tel') || '5511900000000';
-
-  var texto = 'Olá, Dr. Nailton. Meu nome é ' + nome + '.\n' +
-              'WhatsApp para contato: ' + whatsapp + '\n' +
-              'Situação: ' + situacao + '\n' +
-              'Gostaria de uma análise inicial do meu caso.';
+  var tel = params.get('tel') || '5511978018650';
+  var texto = 'Olá! Vim do Google e quero falar com um advogado especialista.';
 
   var waUrl = 'https://wa.me/' + tel + '?text=' + encodeURIComponent(texto);
   document.getElementById('manualLink').href = waUrl;
